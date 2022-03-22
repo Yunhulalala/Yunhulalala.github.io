@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/favicon_package_v0.16/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/favicon_package_v0.16/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="第一章 Flask Web开发基础        run app.run(host,port,debug) host主机名,默认值是127.0.0.1或localhost port端口号，默认值5000 debug默认值是127.0.0.1或localhost     从github上面手动下载python的package 打开cmd 激活虚拟环境文件路径\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask Learning">
+<meta property="og:url" content="https://yunhulalala.github.io/2022/03/02/Flask-Learning/index.html">
+<meta property="og:site_name" content="Yixuan&#39; Blog">
+<meta property="og:description" content="第一章 Flask Web开发基础        run app.run(host,port,debug) host主机名,默认值是127.0.0.1或localhost port端口号，默认值5000 debug默认值是127.0.0.1或localhost     从github上面手动下载python的package 打开cmd 激活虚拟环境文件路径\">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-01T16:17:29.000Z">
+<meta property="article:modified_time" content="2022-03-08T10:25:03.424Z">
+<meta property="article:author" content="Yixuan Zeng">
+<meta property="article:tag" content="Flask">
+<meta name="twitter:card" content="summary"><title>Flask Learning | Yixuan' Blog</title><link ref="canonical" href="https://yunhulalala.github.io/2022/03/02/Flask-Learning/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Yixuan' Blog</div><div class="header-banner-info__subtitle">Record my learning</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Flask Learning</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-03-02</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-03-08</span></span></div></header><div class="post-body">
+        <h1 id="第一章-Flask-Web开发基础"   >
+          <a href="#第一章-Flask-Web开发基础" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一章-Flask-Web开发基础" class="headerlink" title="第一章 Flask Web开发基础"></a>第一章 Flask Web开发基础</h1>
+      <ul>
+<li>run<ul>
+<li><code>app.run(host,port,debug)</code></li>
+<li><code>host</code>主机名,默认值是127.0.0.1或localhost</li>
+<li><code>port</code>端口号，默认值5000</li>
+<li><code>debug</code>默认值是127.0.0.1或localhost  </li>
+</ul>
+</li>
+<li>从github上面手动下载python的package<ol>
+<li>打开cmd</li>
+<li>激活虚拟环境<br><code>文件路径\venv\Scripts\activate</code></li>
+<li>解压从github下载的包</li>
+<li>cd 解压文件夹目录</li>
+<li>执行<code>python setup.py install</code></li>
+</ol>
+</li>
+</ul>
+
+        <h2 id="路由处理"   >
+          <a href="#路由处理" class="heading-link"><i class="fas fa-link"></i></a><a href="#路由处理" class="headerlink" title="路由处理"></a>路由处理</h2>
+      
+        <h1 id="第三章-模板"   >
+          <a href="#第三章-模板" class="heading-link"><i class="fas fa-link"></i></a><a href="#第三章-模板" class="headerlink" title="第三章 模板"></a>第三章 模板</h1>
+      <ul>
+<li>把HTML代码存储在单独的文件中</li>
+<li>借助模板引擎，我们可以在HTML文件中使用特殊的语法来标记出变量，这类包含固定内容和动态部分的可重用文件称为模板（template）。  </li>
+</ul>
+
+        <h2 id="模板基本用法"   >
+          <a href="#模板基本用法" class="heading-link"><i class="fas fa-link"></i></a><a href="#模板基本用法" class="headerlink" title="模板基本用法"></a>模板基本用法</h2>
+      <p><strong>模板语法</strong></p>
+<ul>
+<li><code>&#123;%...%&#125;</code>if判断、for循环</li>
+<li><code>&#123;&#123;...&#125;&#125;</code>表达式</li>
+<li><code>&#123;#...#&#125;</code>注释</li>
+</ul>
+<p><strong>渲染模板</strong><br>    <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask, render_template</span><br><span class="line">...</span><br><span class="line">@app.route(&#x27;/watchlist&#x27;)</span><br><span class="line">def watchlist():</span><br><span class="line">    return render_template(&#x27;watchlist.html&#x27;, user=user, movies=movies)</span><br></pre></td></tr></table></div></figure></p>
+<ul>
+<li><strong>render_template</strong></li>
+</ul>
+
+        <h2 id="模板辅助工具"   >
+          <a href="#模板辅助工具" class="heading-link"><i class="fas fa-link"></i></a><a href="#模板辅助工具" class="headerlink" title="模板辅助工具"></a>模板辅助工具</h2>
+      <ul>
+<li><p><strong>上下文</strong>  </p>
+<ul>
+<li>模板定义变量<ul>
+<li><code>&#123;% set navigation = [('/', 'Home'), ('/about', 'About')] %&#125;</code></li>
+</ul>
+</li>
+<li>注册模板上下文处理  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@app.context_processor</span><br><span class="line">def inject_foo():</span><br><span class="line">    foo = &#x27;I am foo.&#x27;</span><br><span class="line">    return dict(foo=foo)  # 等同于return &#123;&#x27;foo&#x27;: foo&#125;</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li><strong>context_processor</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>全局对象</strong>  </p>
+<ul>
+<li>定义  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@app.template_global()</span><br><span class="line">def bar():</span><br><span class="line">    return &#x27;I am bar.&#x27;</span><br></pre></td></tr></table></div></figure></li>
+<li>使用<ul>
+<li><code>&#123;&#123; bar() &#125;&#125;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>过滤器</strong>  </p>
+<ul>
+<li>定义  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@app.template_filter()</span><br><span class="line">def musical(s):</span><br><span class="line">    return s + Markup(&#x27; &amp;#9835;&#x27;)</span><br></pre></td></tr></table></div></figure></li>
+<li>使用<ul>
+<li><code>&#123; name|musical &#125;&#125;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>测试器</strong></p>
+<ul>
+<li>定义  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@app.template_test()</span><br><span class="line">def baz(n):</span><br><span class="line">    if n == &#x27;baz&#x27;:</span><br><span class="line">        return True</span><br><span class="line">    return False</span><br></pre></td></tr></table></div></figure></li>
+<li>使用<ul>
+<li>使用is连接变量和测试器：<code>number</code>是测试器  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if age is number %&#125;</span><br><span class="line">　　&#123;&#123; age * 365 &#125;&#125;</span><br><span class="line">&#123;% else %&#125;</span><br><span class="line">　　无效的数字。</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>模板环境对象</strong></p>
+<ul>
+<li>所有的配置选项、上下文变量、全局函数、过滤器和测试器都存储在Environment实例上</li>
+<li>添加自定义全局对象<code>app.jinja_env.globals[&#39;bar&#39;] = bar</code></li>
+<li>添加自定义过滤器<code>app.jinja_env.filters[&#39;smiling&#39;] = smiling</code></li>
+<li>添加自定义测试器<code>app.jinja_env.tests[&#39;baz&#39;] = baz</code></li>
+</ul>
+</li>
+</ul>
+
+        <h2 id="模板结构组织"   >
+          <a href="#模板结构组织" class="heading-link"><i class="fas fa-link"></i></a><a href="#模板结构组织" class="headerlink" title="模板结构组织"></a>模板结构组织</h2>
+      <ul>
+<li><strong>局部模板</strong><ul>
+<li>包含部分代码</li>
+<li>插入局部模板<code>&#123;%include'_banner.html'%&#125;</code></li>
+</ul>
+</li>
+<li><strong>宏</strong><ul>
+<li>定义  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% macro qux(amount=1) %&#125;</span><br><span class="line">&#123;% if amount == 1 %&#125;</span><br><span class="line">    I am qux.</span><br><span class="line">&#123;% elif amount &gt; 1 %&#125;</span><br><span class="line">    We are quxs.</span><br><span class="line">&#123;% endif %&#125;</span><br><span class="line">&#123;% endmacro %&#125;</span><br></pre></td></tr></table></div></figure></li>
+<li>使用  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% from &#x27;macros.html&#x27; import qux %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;&#123; qux(amount=5) &#125;&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+<li><strong>模板继承</strong> <ul>
+<li>定义  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% block body %&#125;</span><br><span class="line">...</span><br><span class="line">&#123;% endblock body %&#125;</span><br></pre></td></tr></table></div></figure></li>
+<li>使用<ul>
+<li><code>&#123;% extends 'base.html' %&#125;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        <h2 id="模板进阶实践"   >
+          <a href="#模板进阶实践" class="heading-link"><i class="fas fa-link"></i></a><a href="#模板进阶实践" class="headerlink" title="模板进阶实践"></a>模板进阶实践</h2>
+      <ul>
+<li><strong>空白控制</strong><ul>
+<li>减号  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">    &#123;% if True -%&#125;</span><br><span class="line">        &lt;p&gt;Hello!&lt;/p&gt;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></div></figure></li>
+<li>添加环境变量<br>  <code>app.jinja_env.trim_blocks = True </code><br>  <code>app.jinja_env.lstrip_blocks = True</code></li>
+</ul>
+</li>
+<li><strong>加载静态文件</strong><ul>
+<li>放在static文件夹中<ul>
+<li><code>url_for()</code></li>
+</ul>
+</li>
+<li>使用宏加载静态资源</li>
+</ul>
+</li>
+<li><strong>消息闪现</strong><ul>
+<li>定义  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask, render_template, flash</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.secret_key = &#x27;secret string&#x27;</span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/flash&#x27;)</span><br><span class="line">def just_flash():</span><br><span class="line">    flash(&#x27;I am flash, who is looking for me?&#x27;)</span><br><span class="line">    return redirect(url_for(&#x27;index&#x27;))</span><br></pre></td></tr></table></div></figure></li>
+<li>使用<ul>
+<li><code>get_flashed_messages（）</code>函数用来在模板里获取消息<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;main&gt;</span><br><span class="line">    &#123;% for message in get_flashed_messages() %&#125;</span><br><span class="line">        &lt;div class=&quot;alert&quot;&gt;&#123;&#123; message &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">    &#123;% block content %&#125;&#123;% endblock %&#125;</span><br><span class="line">&lt;/main&gt;</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>自定义错误页面</strong><ul>
+<li>放在templates的errors子文件夹中</li>
+<li>定义  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;main&gt;</span><br><span class="line">    &#123;% for message in get_flashed_messages() %&#125;</span><br><span class="line">        &lt;div class=&quot;alert&quot;&gt;&#123;&#123; message &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">    &#123;% block content %&#125;&#123;% endblock %&#125;</span><br><span class="line">&lt;/main&gt;</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+<li><strong>JavaScript和CSS中的Jinja2</strong><ul>
+<li>行内<ul>
+<li>不推荐</li>
+</ul>
+</li>
+<li>定义为JavaScript/CSS变量<ul>
+<li>通过HTML元素的data-*属性存储</li>
+<li><code>&lt;span data-id=&quot;&#123;&#123; user.id &#125;&#125;&quot; data-username=&quot;&#123;&#123; user.username &#125;&#125;&quot;&gt;&#123;&#123; user.username &#125;&#125;&lt;/span&gt;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        <h1 id="第四章-表单"   >
+          <a href="#第四章-表单" class="heading-link"><i class="fas fa-link"></i></a><a href="#第四章-表单" class="headerlink" title="第四章 表单"></a>第四章 表单</h1>
+      <ul>
+<li><strong>使用Flask-WTF处理表单</strong>  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class LoginForm(FlaskForm):</span><br><span class="line"># 文本字段 &lt;input type=&quot;text&quot;&gt;</span><br><span class="line">username = StringField(&#x27;Username&#x27;, validators=[DataRequired()])</span><br><span class="line"># &lt;input type=&quot;password&quot;&gt;</span><br><span class="line">password = PasswordField(&#x27;Password&#x27;, validators=[DataRequired(), Length(8, 128)])</span><br><span class="line"># &lt;input type=&quot;checkbox&quot;&gt;</span><br><span class="line">remember = BooleanField(&#x27;Remember me&#x27;)</span><br><span class="line"># &lt;input type=&quot;submit&quot;&gt;</span><br><span class="line">submit = SubmitField(&#x27;Log in&#x27;)</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li><code>validators=[DataRequired()</code>验证器</li>
+</ul>
+</li>
+<li><strong>在模板中渲染表单</strong><ul>
+<li><code>&#123;&#123; form.csrf_token &#125;&#125; &lt;!-- 渲染CSRF令牌隐藏字段 --&gt;</code></li>
+</ul>
+</li>
+<li><strong>处理表单数据</strong><ul>
+<li>验证表单数据<ul>
+<li>客户端服务端验证<ul>
+<li>客户端验证<ul>
+<li>使用HTML5内置的验证属性即可实现基本的客户端验证（type、required、min、max、accept等</li>
+</ul>
+</li>
+<li>服务器端验证</li>
+</ul>
+</li>
+<li>WTForms验证机制<ul>
+<li>对表单实例调用validate（）方法。这会逐个对字段调用字段实例化时定义的验证器，返回表示验证结果的布尔值。如果验证失败，就把错误消息存储到表单实例的errors属性对应的字典中</li>
+</ul>
+</li>
+<li>在视图函数中验证表单<ul>
+<li><code>if request.method == &#39;POST&#39; and form.validate(): # 处理POST请求</code></li>
+<li><code>if form.validate_on_submit():</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>使用宏渲染表单</strong></li>
+<li><strong>自定义验证器</strong></li>
+<li><strong>文件上传</strong>  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from flask_wtf.file import FileField, FileRequired, FileAllowed</span><br><span class="line">class UploadForm(FlaskForm):</span><br><span class="line">    photo = FileField(&#x27;Upload Image&#x27;, validators=[FileRequired(), FileAllowed([&#x27;jpg&#x27;, &#x27;jpeg&#x27;, &#x27;png&#x27;, &#x27;gif&#x27;])])</span><br><span class="line">    submit = SubmitField()</span><br></pre></td></tr></table></div></figure>
+
+        <h1 id="第五章-数据库"   >
+          <a href="#第五章-数据库" class="heading-link"><i class="fas fa-link"></i></a><a href="#第五章-数据库" class="headerlink" title="第五章 数据库"></a>第五章 数据库</h1>
+      
+        <h2 id="ORM"   >
+          <a href="#ORM" class="heading-link"><i class="fas fa-link"></i></a><a href="#ORM" class="headerlink" title="ORM"></a>ORM</h2>
+      <ul>
+<li>SQLAlchemy是Python社区使用最广泛的ORM之一
+        <h2 id="使用Flask-SQLAlchemy管理数据库"   >
+          <a href="#使用Flask-SQLAlchemy管理数据库" class="heading-link"><i class="fas fa-link"></i></a><a href="#使用Flask-SQLAlchemy管理数据库" class="headerlink" title="使用Flask-SQLAlchemy管理数据库"></a>使用Flask-SQLAlchemy管理数据库</h2>
+      </li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>app.py：配置数据库URI<pre><code> <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># SQLite URI compatible</span><br><span class="line">WIN = sys.platform.startswith(&#x27;win&#x27;)</span><br><span class="line">if WIN:</span><br><span class="line">    prefix = &#x27;sqlite:///&#x27;</span><br><span class="line">else:</span><br><span class="line">    prefix = &#x27;sqlite:////&#x27;</span><br><span class="line"># 配置数据库URI</span><br><span class="line">app.config[&#x27;SQLALCHEMY_DATABASE_URI&#x27;] = os.getenv(&#x27;DATABASE_URL&#x27;, prefix + os.path.join(app.root_path, &#x27;data.db&#x27;))</span><br></pre></td></tr></table></div></figure>
+</code></pre>
+</li>
+<li>初始化数据库<br> <code>db = SQLAlchemy(app)</code></li>
+<li>关闭警告信息<pre><code> <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 这个配置键的默认值为None，如果没有特殊需要，我们可以把它设为False来关闭警告信息：</span><br><span class="line">app.config[&#x27;SQLALCHEMY_TRACK_MODIFICATIONS&#x27;] = False</span><br></pre></td></tr></table></div></figure>
+</code></pre>
+</li>
+<li>定义数据库模型<pre><code> <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Note(db.Model):</span><br><span class="line">    id = db.Column(db.Integer, primary_key=True)</span><br><span class="line">    body = db.Column(db.Text)</span><br></pre></td></tr></table></div></figure>
+</code></pre>
+</li>
+<li>自定义flask命令完成工作<ul>
+<li>创建与删除数据库和表,执行命令  <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@app.cli.command()</span><br><span class="line">@click.option(&#x27;--drop&#x27;, is_flag=True, help=&#x27;Create after drop.&#x27;)</span><br><span class="line">def initdb(drop):</span><br><span class="line">    &quot;&quot;&quot;Initialize the database.&quot;&quot;&quot;</span><br><span class="line">    if drop:</span><br><span class="line">        db.drop_all()</span><br><span class="line">    db.create_all()</span><br><span class="line">    click.echo(&#x27;Initialized database.&#x27;)</span><br></pre></td></tr></table></div></figure></li>
+<li>删除数据库和表，执行命令<code>flask initdb(True)</code></li>
+<li>创建数据库和表，执行命令<code>flask initdb(False)</code></li>
+</ul>
+</li>
+<li>经过以上操作，会在目录下创建一个data.db文件</li>
+</ol>
+
+        <h2 id="数据库操作"   >
+          <a href="#数据库操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2>
+      
+        <h3 id="在视图函数中操作数据库"   >
+          <a href="#在视图函数中操作数据库" class="heading-link"><i class="fas fa-link"></i></a><a href="#在视图函数中操作数据库" class="headerlink" title="在视图函数中操作数据库"></a>在视图函数中操作数据库</h3>
+      <ol>
+<li>Create<ol>
+<li>创建一个表单类</li>
+<li>创建一个视图<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/new&#x27;, methods=[&#x27;GET&#x27;, &#x27;POST&#x27;])</span><br><span class="line">def new_note():</span><br><span class="line">    form = NewNoteForm()</span><br><span class="line">    if form.validate_on_submit():</span><br><span class="line">        body = form.body.data</span><br><span class="line">        note = Note(body=body)</span><br><span class="line">        db.session.add(note)</span><br><span class="line">        db.session.commit()</span><br><span class="line">        flash(&#x27;Your note is saved.&#x27;)</span><br><span class="line">        return redirect(url_for(&#x27;index&#x27;))</span><br><span class="line">    return render_template(&#x27;new_note.html&#x27;, form=form)</span><br></pre></td></tr></table></div></figure></li>
+</ol>
+</li>
+<li>Read <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/&#x27;)</span><br><span class="line">def index():</span><br><span class="line">    notes = Note.query.all()</span><br><span class="line">    return render_template(&#x27;index.html&#x27;, notes=notes)</span><br></pre></td></tr></table></div></figure></li>
+<li>Updata <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/edit/&lt;int:note_id&gt;&#x27;, methods=[&#x27;GET&#x27;, &#x27;POST&#x27;])</span><br><span class="line">def edit_note(note_id):</span><br><span class="line">    form = EditNoteForm()</span><br><span class="line">    note = Note.query.get(note_id)</span><br><span class="line">    if form.validate_on_submit():</span><br><span class="line">        note.body = form.body.data</span><br><span class="line">        db.session.commit()</span><br><span class="line">        flash(&#x27;Your note is updated.&#x27;)</span><br><span class="line">        return redirect(url_for(&#x27;index&#x27;))</span><br><span class="line">    form.body.data = note.body</span><br><span class="line">    return render_template(&#x27;edit_note.html&#x27;, form=form)</span><br></pre></td></tr></table></div></figure></li>
+<li>Delete <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/delete/&lt;int:note_id&gt;&#x27;, methods=[&#x27;POST&#x27;])</span><br><span class="line">def delete_note(note_id):</span><br><span class="line">    form = DeleteNoteForm()</span><br><span class="line">    if form.validate_on_submit():</span><br><span class="line">        note = Note.query.get(note_id)  # 获取对应记录</span><br><span class="line">        db.session.delete(note)  # 删除记录</span><br><span class="line">        db.session.commit()  # 提交修改</span><br><span class="line">        flash(&#x27;Your note is deleted.&#x27;)</span><br><span class="line">　　else:</span><br><span class="line">        abort(400)</span><br><span class="line">    return redirect(url_for(&#x27;index&#x27;))</span><br></pre></td></tr></table></div></figure>
+
+        <h2 id="定义关系"   >
+          <a href="#定义关系" class="heading-link"><i class="fas fa-link"></i></a><a href="#定义关系" class="headerlink" title="定义关系"></a>定义关系</h2>
+      </li>
+</ol>
+<ul>
+<li><p>定义关系需要两步，分别是<strong>创建外键</strong>和<strong>定义关系属性</strong></p>
+</li>
+<li><p>一对多</p>
+<ol>
+<li><p>定义关系</p>
+<ol>
+<li>定义外键<ul>
+<li>在“多”的一侧定义<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Article(db.Model):</span><br><span class="line">    ...</span><br><span class="line">    author_id = db.Column(db.Integer, db.ForeignKey(&#x27;author.id&#x27;))</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+<li>定义关系属性<ul>
+<li>使用关系函数定义关系属性，关系属性在关系的出发侧定义，</li>
+<li>即一对多关系的“一”这一侧<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Author(db.Model):</span><br><span class="line">    ...</span><br><span class="line">    articles = db.relationship(&#x27;Article&#x27;)</span><br></pre></td></tr></table></div></figure></li>
+<li>使用了db.relationship（）关系函数定义为关系属性，因为这个关系属性返回多个记录，我们称之为集合关系属性。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>建立关系（两种方式</p>
+<ol>
+<li><p>外键字段赋值</p>
+ <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spam.author_id = 1</span><br><span class="line">ham.author_id = 1</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></div></figure>
+<ul>
+<li>执行<code>foo.articles</code>,返回<code>[&lt;Article u&#39;Spam&#39;&gt;, &lt;Article u&#39;Ham&#39;&gt;]</code></li>
+</ul>
+</li>
+<li><p>通过操作关系属性，将关系属性赋给实际的对象即可建立关系。集合关系属性可以像列表一样操作，调用append（）方法来与一个Article对象建立关系：</p>
+ <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">foo.articles.append(spam)</span><br><span class="line">foo.articles.append(ham)</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></div></figure></li>
+</ol>
+</li>
+<li><p>解除关系</p>
+<pre><code> <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; foo.articles.remove(spam)              </span><br><span class="line">&gt;&gt;&gt; db.session.commit()</span><br><span class="line">&gt;&gt;&gt; foo.articles</span><br><span class="line">[&lt;Article u&#x27;Ham&#x27;&gt;]</span><br></pre></td></tr></table></div></figure>
+</code></pre>
+</li>
+<li><p>建立双向关系</p>
+<ol>
+<li>两侧都创建一个relationship()函数，back_populates <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Writer(db.Model):</span><br><span class="line">    id = db.Column(db.Integer, primary_key=True)</span><br><span class="line">    name = db.Column(db.String(70), unique=True)</span><br><span class="line">    books = db.relationship(&#x27;Book&#x27;, back_populates=&#x27;writer&#x27;)</span><br><span class="line"></span><br><span class="line">class Book(db.Model):</span><br><span class="line">    id = db.Column(db.Integer, primary_key=True)</span><br><span class="line">    name = db.Column(db.String(50), index=True)</span><br><span class="line">    writer_id = db.Column(db.Integer, db.ForeignKey(&#x27;writer.id&#x27;))</span><br><span class="line">    writer = db.relationship(&#x27;Writer&#x27;, back_populates=&#x27;books&#x27;)</span><br></pre></td></tr></table></div></figure></li>
+<li>建立关系<ul>
+<li>赋值</li>
+</ul>
+</li>
+<li>解除关系<br>  -设为None</li>
+</ol>
+<ul>
+<li>使用backref简化关系定义</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://yunhulalala.github.io">Yixuan Zeng</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://yunhulalala.github.io/2022/03/02/Flask-Learning/">https://yunhulalala.github.io/2022/03/02/Flask-Learning/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://yunhulalala.github.io/tags/Flask/">Flask</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2022/03/09/JavaScirpt/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">[ 文章无标题 ]</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2022/02/28/CSS/"><span class="paginator-prev__text">CSS</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-Flask-Web%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">
+          第一章 Flask Web开发基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E5%A4%84%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">
+          路由处理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">
+          第三章 模板</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">
+          模板基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7"><span class="toc-number">2.2.</span> <span class="toc-text">
+          模板辅助工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E7%BB%93%E6%9E%84%E7%BB%84%E7%BB%87"><span class="toc-number">2.3.</span> <span class="toc-text">
+          模板结构组织</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E8%BF%9B%E9%98%B6%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.4.</span> <span class="toc-text">
+          模板进阶实践</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E8%A1%A8%E5%8D%95"><span class="toc-number">3.</span> <span class="toc-text">
+          第四章 表单</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">4.</span> <span class="toc-text">
+          第五章 数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ORM"><span class="toc-number">4.1.</span> <span class="toc-text">
+          ORM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Flask-SQLAlchemy%E7%AE%A1%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">4.2.</span> <span class="toc-text">
+          使用Flask-SQLAlchemy管理数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%93%8D%E4%BD%9C"><span class="toc-number">4.3.</span> <span class="toc-text">
+          数据库操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E8%A7%86%E5%9B%BE%E5%87%BD%E6%95%B0%E4%B8%AD%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">4.3.1.</span> <span class="toc-text">
+          在视图函数中操作数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%85%B3%E7%B3%BB"><span class="toc-number">4.4.</span> <span class="toc-text">
+          定义关系</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/author2.png" alt="avatar"></div><p class="sidebar-ov-author__text">hello world</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/Yunhulalala" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/u/5178193663" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">12</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">6</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Yixuan Zeng</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>
