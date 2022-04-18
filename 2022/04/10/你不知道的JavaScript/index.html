@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/favicon_package_v0.16/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/favicon_package_v0.16/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="第一卷                           第一章 作用域        工作模式 词法作用域 动态作用域                    词法阶段       作用域查找会在找到第一个匹配的标识符时停止，作用域查找始终从运行时所处的最内部作用域开始，逐级向外或者说向上进行，直到遇见第一个匹配的标识符为止。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yixuan&#39; Blog">
+<meta property="og:url" content="https://yunhulalala.github.io/2022/04/10/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript/index.html">
+<meta property="og:site_name" content="Yixuan&#39; Blog">
+<meta property="og:description" content="第一卷                           第一章 作用域        工作模式 词法作用域 动态作用域                    词法阶段       作用域查找会在找到第一个匹配的标识符时停止，作用域查找始终从运行时所处的最内部作用域开始，逐级向外或者说向上进行，直到遇见第一个匹配的标识符为止。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-10T13:07:40.241Z">
+<meta property="article:modified_time" content="2022-04-11T20:36:03.237Z">
+<meta property="article:author" content="Yixuan Zeng">
+<meta name="twitter:card" content="summary"><title>[ 文章无标题 ] | Yixuan' Blog</title><link ref="canonical" href="https://yunhulalala.github.io/2022/04/10/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Yixuan' Blog</div><div class="header-banner-info__subtitle">Record my learning</div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">[ 文章无标题 ]</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-04-10</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-04-12</span></span></div></header><div class="post-body">
+        <h1 id="第一卷"   >
+          <a href="#第一卷" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一卷" class="headerlink" title="第一卷"></a>第一卷</h1>
+      
+        <h2 id="第一章-作用域"   >
+          <a href="#第一章-作用域" class="heading-link"><i class="fas fa-link"></i></a><a href="#第一章-作用域" class="headerlink" title="第一章 作用域"></a>第一章 作用域</h2>
+      <ul>
+<li>工作模式<ul>
+<li>词法作用域</li>
+<li>动态作用域
+        <h3 id="词法阶段"   >
+          <a href="#词法阶段" class="heading-link"><i class="fas fa-link"></i></a><a href="#词法阶段" class="headerlink" title="词法阶段"></a>词法阶段</h3>
+      作用域查找会在找到第一个匹配的标识符时停止，作用域查找始终从运行时所处的最内部作用域开始，逐级向外或者说向上进行，直到遇见第一个匹配的标识符为止。
+        <h3 id="函数中的作用域"   >
+          <a href="#函数中的作用域" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数中的作用域" class="headerlink" title="函数中的作用域"></a>函数中的作用域</h3>
+      </li>
+</ul>
+</li>
+<li>隐藏内部实现<ul>
+<li>不将所有的变量和函数都在做全局作用域中（不破坏最小特权原则，不暴露过多的变量和函数）</li>
+<li>做法：将私有的具体内容（函数、变量）嵌套在另一个函数作用域中，以此无从从外部进行访问</li>
+<li><strong>优点</strong><ul>
+<li>规避冲突：避免同名标识符的冲突</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>直接调用函数<code>fun()</code>会造成作用域污染，可以用立即执行函数、匿名函数来优化。<ul>
+<li>立即执行函数表达式<ol>
+<li><code>(function foo()&#123; .. &#125;)()</code></li>
+<li><code>(function()&#123;...&#125;())</code></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+
+        <h3 id="块作用域"   >
+          <a href="#块作用域" class="heading-link"><i class="fas fa-link"></i></a><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h3>
+      <ol>
+<li>with</li>
+<li>try/catch</li>
+<li><code>let</code><ul>
+<li>更具维护性的代码<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/*let*/ &#123; let a = 2;</span><br><span class="line">console.log( a );</span><br><span class="line">&#125;</span><br><span class="line">console.log( a ); // ReferenceError</span><br></pre></td></tr></table></div></figure></li>
+</ul>
+</li>
+</ol>
+
+        <h2 id="第四章-提升"   >
+          <a href="#第四章-提升" class="heading-link"><i class="fas fa-link"></i></a><a href="#第四章-提升" class="headerlink" title="第四章 提升"></a>第四章 提升</h2>
+      <p><code>var a = 2</code>;JavaScript是将其看成两个声明：<code>var a</code>在预编译阶段进行，<code>a = 2</code>会被<strong>留在原地</strong>等待执行阶段</p>
+<ul>
+<li>函数声明和变量都会被提升，<strong>函数首先被提升，然后才是变量</strong></li>
+<li>提升是所在作用域的提升</li>
+<li>注意不要在块级作用域声明函数</li>
+</ul>
+
+        <h2 id="第五章-作用域闭包"   >
+          <a href="#第五章-作用域闭包" class="heading-link"><i class="fas fa-link"></i></a><a href="#第五章-作用域闭包" class="headerlink" title="第五章 作用域闭包"></a>第五章 作用域闭包</h2>
+      <p>需要熟悉词法作用域<br>闭包是基于词法作用域书写代码时所产生的自然结果 </p>
+
+        <h3 id="循环与闭包"   >
+          <a href="#循环与闭包" class="heading-link"><i class="fas fa-link"></i></a><a href="#循环与闭包" class="headerlink" title="循环与闭包"></a>循环与闭包</h3>
+      <ol>
+<li>下面的代码都被封闭在一个共享的全局作用域中，只有一个i。而延迟函数的回调会在循环结束时才执行，最后会输出5次的6 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (var i=1; i&lt;=5; i++) &#123;</span><br><span class="line">        setTimeout( function timer() &#123;</span><br><span class="line">        console.log( i );</span><br><span class="line">        &#125;, 100 );</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></div></figure></li>
+<li>在迭代内使用立即执行函数生成一个新的作用域，使得延迟函数的回调可以将新的<br>作用域封闭在每个迭代内部，最后输出1，2，3，4，5 <figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for (var i=1; i&lt;=5; i++) &#123;</span><br><span class="line">(function() &#123;</span><br><span class="line">var j = i;</span><br><span class="line">setTimeout( function timer() &#123;</span><br><span class="line">console.log( j );</span><br><span class="line">&#125;, j*1000 );</span><br><span class="line">&#125;)();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li>
+<li>for循环头部的let声明，让每一次迭代转化成可以关闭的作用域<figure class="highlight plaintext"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for (let i=1; i&lt;=5; i++) &#123;</span><br><span class="line">setTimeout( function timer() &#123;</span><br><span class="line">console.log( i );</span><br><span class="line">&#125;, i*1000 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure></li>
+</ol>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://yunhulalala.github.io">Yixuan Zeng</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://yunhulalala.github.io/2022/04/10/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript/">https://yunhulalala.github.io/2022/04/10/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84JavaScript/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2022/03/31/%E5%8F%8D%E6%80%9D/"><span class="paginator-prev__text">反思</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E5%8D%B7"><span class="toc-number">1.</span> <span class="toc-text">
+          第一卷</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">1.1.</span> <span class="toc-text">
+          第一章 作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%8D%E6%B3%95%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">
+          词法阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%B8%AD%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">
+          函数中的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">1.1.3.</span> <span class="toc-text">
+          块作用域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%8F%90%E5%8D%87"><span class="toc-number">1.2.</span> <span class="toc-text">
+          第四章 提升</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%97%AD%E5%8C%85"><span class="toc-number">1.3.</span> <span class="toc-text">
+          第五章 作用域闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E4%B8%8E%E9%97%AD%E5%8C%85"><span class="toc-number">1.3.1.</span> <span class="toc-text">
+          循环与闭包</span></a></li></ol></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/author2.png" alt="avatar"></div><p class="sidebar-ov-author__text">hello world</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/Yunhulalala" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://weibo.com/u/5178193663" target="_blank" rel="noopener" data-popover="微博" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weibo"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">16</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">0</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">7</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Yixuan Zeng</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>
